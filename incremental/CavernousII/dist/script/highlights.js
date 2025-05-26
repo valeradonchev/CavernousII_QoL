@@ -61,7 +61,7 @@ function getTeleportToOffset() {
 				return [undefined, undefined];
 			}
 		}
-	});
+	}
 	return [undefined, undefined];
 }
 function getActionOffset(x, y, action) {
