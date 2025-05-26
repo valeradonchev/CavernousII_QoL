@@ -46,6 +46,24 @@ function getQueueOffset(x, y, queue, maxIndex = -1) {
     }
     return [x, y];
 }
+function getTeleportToOffset() {
+    for(let q = 0; q < zones[displayZone].queues.length; q++){
+	    let x = zones[displayZone].xOffset
+		let y = zones[displayZone].yOffset
+	    for (let i = 0; i < zones[displayZone].queues[q].length; i++) {
+			if (!queue || !queue[i] || x === undefined || y === undefined) {
+				return [undefined, undefined];
+			}
+			let action = queue[i].actionID;
+			if action == "N3"{return [x, y]}
+			[x, y] = getActionOffset(x, y, action);
+			if (!zones[displayZone].hasMapLocation(x, y)) {
+				return [undefined, undefined];
+			}
+		}
+	});
+	return [undefined, undefined];
+}
 function getActionOffset(x, y, action) {
     if (action[0] == "P") {
         let _;
@@ -54,6 +72,10 @@ function getActionOffset(x, y, action) {
             throw new Error(`Invalid action string "${action}"`);
         [_, x, y] = match.map(z => +z);
         return [x + zones[displayZone].xOffset, y + zones[displayZone].yOffset];
+    }
+	if (action[0] == "N4") {
+        [x, y] = getTeleportToOffset();
+        return [x, y];
     }
     x += +(action == "R") - +(action == "L");
     y += +(action == "D") - +(action == "U");
