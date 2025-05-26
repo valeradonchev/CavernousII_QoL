@@ -55,7 +55,7 @@ function getTeleportToOffset() {
 				return [undefined, undefined];
 			}
 			let action = queue[i].actionID;
-			if action == "N3"{return [x, y]}
+			if (action == "N3") {return [x, y]}
 			[x, y] = getActionOffset(x, y, action);
 			if (!zones[displayZone].hasMapLocation(x, y)) {
 				return [undefined, undefined];
