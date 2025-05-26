@@ -48,8 +48,9 @@ function getQueueOffset(x, y, queue, maxIndex = -1) {
 }
 function getTeleportToOffset() {
     for(let q = 0; q < zones[displayZone].queues.length; q++){
+	    let queue = zones[displayZone].queues[q]
 	    let x = zones[displayZone].xOffset
-		let y = zones[displayZone].yOffset
+	    let y = zones[displayZone].yOffset
 	    for (let i = 0; i < zones[displayZone].queues[q].length; i++) {
 			if (!queue || !queue[i] || x === undefined || y === undefined) {
 				return [undefined, undefined];
